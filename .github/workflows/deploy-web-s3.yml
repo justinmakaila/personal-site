@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME}}
+  AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
   S3_BUCKET_NAME: ${{ vars.S3_BUCKET_NAME }}
 
 jobs:
