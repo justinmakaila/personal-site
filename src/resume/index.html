@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resume | justin makaila</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        margin-bottom: 1.5rem;
+      }
+
+      article {
+        white-space: normal;
+      }
+
+      pre {
+        overflow-x: auto;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background: rgba(127, 127, 127, 0.15);
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      blockquote {
+        border-left: 4px solid #999;
+        margin-left: 0;
+        padding-left: 1rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="/">← home</a>
+      </nav>
+
+      <article id="resume-content" aria-live="polite">Loading resume…</article>
+    </main>
+
+    <script>
+      const contentEl = document.getElementById('resume-content');
+
+      const escapeHtml = (text) =>
+        text
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+
+      const formatInline = (text) => {
+        const escaped = escapeHtml(text);
+
+        return escaped
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>')
+          .replace(/`(.+?)`/g, '<code>$1</code>')
+          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+      };
+
+      const renderMarkdown = (markdown) => {
+        const lines = markdown.split('\n');
+        let inList = false;
+        let inCodeBlock = false;
+        const html = [];
+
+        for (const line of lines) {
+          if (line.trim().startsWith('```')) {
+            if (!inCodeBlock) {
+              inCodeBlock = true;
+              html.push('<pre><code>');
+            } else {
+              inCodeBlock = false;
+              html.push('</code></pre>');
+            }
+            continue;
+          }
+
+          if (inCodeBlock) {
+            html.push(`${escapeHtml(line)}\n`);
+            continue;
+          }
+
+          if (/^#{1,6}\s/.test(line)) {
+            if (inList) {
+              html.push('</ul>');
+              inList = false;
+            }
+            const level = line.match(/^#+/)[0].length;
+            const text = line.slice(level + 1);
+            html.push(`<h${level}>${formatInline(text)}</h${level}>`);
+            continue;
+          }
+
+          if (/^>\s/.test(line)) {
+            if (inList) {
+              html.push('</ul>');
+              inList = false;
+            }
+            html.push(`<blockquote>${formatInline(line.replace(/^>\s/, ''))}</blockquote>`);
+            continue;
+          }
+
+          if (/^[-*]\s+/.test(line)) {
+            if (!inList) {
+              inList = true;
+              html.push('<ul>');
+            }
+            html.push(`<li>${formatInline(line.replace(/^[-*]\s+/, ''))}</li>`);
+            continue;
+          }
+
+          if (line.trim() === '') {
+            if (inList) {
+              html.push('</ul>');
+              inList = false;
+            }
+            continue;
+          }
+
+          if (inList) {
+            html.push('</ul>');
+            inList = false;
+          }
+
+          html.push(`<p>${formatInline(line)}</p>`);
+        }
+
+        if (inList) {
+          html.push('</ul>');
+        }
+
+        if (inCodeBlock) {
+          html.push('</code></pre>');
+        }
+
+        return html.join('\n');
+      };
+
+      fetch('/public/resume.md')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Resume markdown was not found.');
+          }
+
+          return response.text();
+        })
+        .then((markdown) => {
+          contentEl.innerHTML = renderMarkdown(markdown);
+        })
+        .catch(() => {
+          contentEl.innerHTML = [
+            '<h1>Resume</h1>',
+            '<p>Resume content is not available yet.</p>',
+            '<p>Please check back later.</p>',
+          ].join('');
+        });
+    </script>
+  </body>
+</html>
