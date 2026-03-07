@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>consulting | justin makaila</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        margin-bottom: 1.5rem;
+      }
+
+      pre {
+        overflow-x: auto;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background: rgba(127, 127, 127, 0.15);
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      blockquote {
+        border-left: 4px solid #999;
+        margin-left: 0;
+        padding-left: 1rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="/">← home</a>
+      </nav>
+
+      <article id="consulting-content" aria-live="polite">Loading consulting profile…</article>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      const contentEl = document.getElementById('consulting-content');
+
+      fetch('/public/consulting.md')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Consulting markdown was not found.');
+          }
+
+          return response.text();
+        })
+        .then((markdown) => {
+          contentEl.innerHTML = marked.parse(markdown);
+        })
+        .catch(() => {
+          contentEl.innerHTML = [
+            '<h1>Consulting</h1>',
+            '<p>Consulting content is not available yet.</p>',
+            '<p>Please check back later.</p>',
+          ].join('');
+        });
+    </script>
+  </body>
+</html>
