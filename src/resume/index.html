@@ -25,10 +25,6 @@
         margin-bottom: 1.5rem;
       }
 
-      article {
-        white-space: normal;
-      }
-
       pre {
         overflow-x: auto;
         padding: 0.75rem;
@@ -57,105 +53,9 @@
       <article id="resume-content" aria-live="polite">Loading resume…</article>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       const contentEl = document.getElementById('resume-content');
-
-      const escapeHtml = (text) =>
-        text
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-
-      const formatInline = (text) => {
-        const escaped = escapeHtml(text);
-
-        return escaped
-          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.+?)\*/g, '<em>$1</em>')
-          .replace(/`(.+?)`/g, '<code>$1</code>')
-          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-      };
-
-      const renderMarkdown = (markdown) => {
-        const lines = markdown.split('\n');
-        let inList = false;
-        let inCodeBlock = false;
-        const html = [];
-
-        for (const line of lines) {
-          if (line.trim().startsWith('```')) {
-            if (!inCodeBlock) {
-              inCodeBlock = true;
-              html.push('<pre><code>');
-            } else {
-              inCodeBlock = false;
-              html.push('</code></pre>');
-            }
-            continue;
-          }
-
-          if (inCodeBlock) {
-            html.push(`${escapeHtml(line)}\n`);
-            continue;
-          }
-
-          if (/^#{1,6}\s/.test(line)) {
-            if (inList) {
-              html.push('</ul>');
-              inList = false;
-            }
-            const level = line.match(/^#+/)[0].length;
-            const text = line.slice(level + 1);
-            html.push(`<h${level}>${formatInline(text)}</h${level}>`);
-            continue;
-          }
-
-          if (/^>\s/.test(line)) {
-            if (inList) {
-              html.push('</ul>');
-              inList = false;
-            }
-            html.push(`<blockquote>${formatInline(line.replace(/^>\s/, ''))}</blockquote>`);
-            continue;
-          }
-
-          if (/^[-*]\s+/.test(line)) {
-            if (!inList) {
-              inList = true;
-              html.push('<ul>');
-            }
-            html.push(`<li>${formatInline(line.replace(/^[-*]\s+/, ''))}</li>`);
-            continue;
-          }
-
-          if (line.trim() === '') {
-            if (inList) {
-              html.push('</ul>');
-              inList = false;
-            }
-            continue;
-          }
-
-          if (inList) {
-            html.push('</ul>');
-            inList = false;
-          }
-
-          html.push(`<p>${formatInline(line)}</p>`);
-        }
-
-        if (inList) {
-          html.push('</ul>');
-        }
-
-        if (inCodeBlock) {
-          html.push('</code></pre>');
-        }
-
-        return html.join('\n');
-      };
 
       fetch('/public/resume.md')
         .then((response) => {
@@ -166,7 +66,7 @@
           return response.text();
         })
         .then((markdown) => {
-          contentEl.innerHTML = renderMarkdown(markdown);
+          contentEl.innerHTML = marked.parse(markdown);
         })
         .catch(() => {
           contentEl.innerHTML = [
