@@ -1,195 +1,160 @@
 # Justin Makaila
 
-Founder — Treehouse Technology  
+Founder, Treehouse Technology  
 Cross-Platform Application Engineering Consultant  
-Lansdale, PA, United States  
+Lansdale, PA, United States
 
-- Website: https://justinmakaila.com  
-- GitHub: https://github.com/justinmakaila  
-
----
-
-# Overview
-
-Software engineer and consultant specializing in cross-platform mobile platforms, full-stack product development, and real-time data systems.
-
-I help companies modernize mobile architectures, build scalable application platforms, and develop robust backend systems that support real-time products and data-driven applications.
-
-My work spans mobile platforms, backend services, developer tooling, and telemetry systems.
+- Website: https://justinmakaila.com
+- Email: justin@treehousetechnology.io
+- GitHub: https://github.com/justinmakaila
+- LinkedIn: https://www.linkedin.com/in/justinmakaila
+- Consulting: https://treehousetechnology.io
 
 ---
 
-# Consulting Services
+## Overview
 
-## Cross-Platform Mobile Architecture
+Treehouse Technology helps teams modernize mobile applications, ship new cross-platform products, and build backend systems for data-heavy software. Engagements typically combine hands-on implementation with architecture guidance across React Native, TypeScript, Rust, and PostgreSQL-backed platforms.
 
-Design and implementation of modern mobile platforms using React Native.
+Best fit for teams that need:
 
-Typical engagements include:
-
-- migration from native mobile apps to React Native
-- cross-platform architecture for iOS, Android, and Web
-- application performance optimization
-- native integrations and platform services
+- a senior engineer to lead React Native architecture decisions
+- a hands-on consultant to modernize legacy mobile stacks
+- full-stack product delivery spanning client applications and backend services
+- real-time or telemetry-driven system design
 
 ---
 
-## Full-Stack Product Development
+## Services
 
-Development of scalable product platforms across frontend and backend systems.
+### Cross-Platform Mobile Architecture
 
-Capabilities include:
+Design and delivery of modern React Native platforms for iOS and Android.
 
-- React and TypeScript web applications
-- backend APIs and service architecture
-- authentication systems and account management
-- database architecture and schema design
+- platform architecture and shared codebase strategy
+- migration from wrapped web experiences or aging native stacks
+- performance tuning and native integration planning
+- authentication, navigation, permissions, and release workflow design
 
----
+### Full-Stack Product Development
 
-## Real-Time Systems and Data Platforms
+Build product systems from frontend through backend infrastructure.
 
-Design and implementation of real-time data systems and telemetry platforms.
+- React and TypeScript application development
+- Node.js and Rust service design
+- API integration and account management workflows
+- PostgreSQL and Supabase-backed application platforms
 
-Areas of focus:
+### Real-Time Systems and Data Platforms
+
+Architecture and implementation for products that depend on live or high-volume data.
 
 - telemetry ingestion pipelines
-- WebSocket streaming infrastructure
+- WebSocket, gRPC, and HTTP-based service layers
 - real-time dashboards and overlays
-- analytics and session data processing
+- session analysis and data processing workflows
+
+### Delivery Systems and Developer Tooling
+
+Improve engineering throughput with pragmatic delivery infrastructure.
+
+- CI/CD pipeline implementation
+- release automation
+- branch-based environment workflows
+- internal tooling that reduces delivery friction
 
 ---
 
-# Representative Work
+## Representative Work
 
-## React Native Platform Modernization
+### React Native Platform Modernization
 
 Modernized a production mobile application that previously relied on a wrapped web experience.
 
-Delivered:
+- delivered a native React Native architecture
+- implemented deep linking, navigation, and device permission flows
+- modernized authentication, export workflows, and Twilio-powered communication features
+- supported profile switching and other communication-heavy application flows
+- left the team with a maintainable cross-platform foundation for iOS and Android
 
-- native React Native architecture
-- deep linking and mobile navigation
-- device permission management
-- authentication and profile switching
-- Twilio communication integration
-
-Result: a maintainable cross-platform mobile application supporting iOS and Android.
-
----
-
-## Workforce Management Mobile Applications
+### Workforce Management Mobile Applications
 
 Led mobile engineering for multiple production applications used in workforce scheduling and time tracking.
 
-Responsibilities included:
+- managed a team of three engineers across four production React Native applications
+- delivered a new time-clock mobile application in three weeks
+- integrated modern API services into a legacy mobile architecture while preserving functionality for existing users
+- established development standards and release processes for the mobile team
 
-- team leadership and technical direction
-- feature architecture and mobile platform design
-- API integration with backend systems
-- application release and deployment processes
+### Vast Technologies Customer Engagement Platform
 
----
+Built a cross-platform React Native and Expo application for Vast Technologies spanning web, iOS, and Android.
 
-## Trackmind Telemetry Platform
+- unified customer messaging, CRM-style contact management, notifications, and task workflows
+- implemented email and SMS templating, Twilio voice calling, knowledge management, and an integrated AI copilot
+- used TypeScript, AWS Amplify authentication, and React Query for shared client-side orchestration
+- structured the codebase for maintainability with reusable components, Storybook-driven development, and scalable cross-platform delivery
 
-Development of a telemetry analysis platform for motorsports and simulation data.
+### Trackmind Telemetry Platform
 
-Capabilities include:
+Current consulting engagement with XRaceAI on a telemetry analysis platform for motorsports and simulation data.
 
 - telemetry ingestion pipelines
 - circuit map visualization
 - driver and engineer collaboration tools
-- real-time overlays and analytics
-
-Technology stack:
-
-- Rust services
-- TypeScript application layer
-- React Native user interface
-- PostgreSQL / Supabase backend
+- real-time overlays and session analysis workflows
+- Rust services, TypeScript application layer, React Native UI, and PostgreSQL / Supabase backend
 
 ---
 
-# Technologies
+## Technologies
 
-## Frontend
-- React
-- React Native
-- Expo
-- Vite
+### Frontend
 
-## Backend
-- Node.js
-- Rust services
-- gRPC
-- REST APIs
-- WebSockets
+React, React Native, Expo, Vite
 
-## Data Platforms
-- PostgreSQL
-- Supabase
+### Backend
 
-## Infrastructure
-- AWS
-- Docker
-- CI/CD pipelines
+Node.js, Rust services, REST APIs, gRPC, WebSockets
+
+### Data Platforms
+
+PostgreSQL, Supabase
+
+### Infrastructure
+
+AWS, Docker, CI/CD pipelines
 
 ---
 
-# Professional Background
+## Professional Background
 
-## Treehouse Technology  
+### Treehouse Technology
 Founder / Consultant  
-2024 – Present
+2024-Present
 
-Independent consultancy delivering mobile and full-stack application engineering services.
+Independent consultancy delivering mobile and full-stack engineering services.
 
-Work includes:
-
-- cross-platform mobile platform development
-- backend service design
-- telemetry data systems
-- developer tooling and automation
-
----
-
-## Nowsta  
+### Nowsta
 Lead Mobile Engineer  
-2023 – 2024
+2023-2024
 
-Led development of multiple production mobile applications for workforce management and scheduling.
+Led mobile engineering for workforce management and scheduling applications.
 
----
-
-## Wellth  
+### Wellth
 Senior Software Engineer  
-2016 – 2022
+2016-2022
 
-Key engineer responsible for mobile and web platform architecture.
+Worked across mobile and web platform architecture, including migration from native applications to React Native.
 
-Major initiatives included migration from native mobile applications to React Native and development of internal React web systems.
-
----
-
-## Present, Inc.  
+### Present, Inc.
 Co-Founder / CTO  
-2013 – 2015
+2013-2015
 
-Early-stage startup building a live video streaming platform.
-
-Responsibilities included backend streaming infrastructure, mobile applications, and engineering leadership.
+Led technical direction for an early-stage live video streaming startup and helped raise $145,000 in seed funding.
 
 ---
 
-# Open Source and Internal Projects
+## Open Source and Internal Projects
 
-In addition to consulting work, I develop open-source tools and internal platforms focused on telemetry analysis and developer tooling.
-
-Projects include:
-
-- telemetry ingestion services
-- developer tooling for telemetry processing
-- real-time data analysis systems
-
----
+Ongoing work includes telemetry tooling, real-time data systems, and consulting engagements for motorsports analysis and developer workflows.

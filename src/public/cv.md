@@ -1,207 +1,170 @@
 # Justin Makaila
 
-Software Engineer — Mobile, Web, and Systems  
-Lansdale, PA, United States  
+Software Engineer | Cross-Platform Applications, Real-Time Systems, and Developer Tooling  
+Lansdale, PA, United States
 
-- Website: https://justinmakaila.com  
-- GitHub: https://github.com/justinmakaila  
-
----
-
-# Engineering Profile
-
-Software engineer specializing in cross-platform application architecture, real-time telemetry systems, and developer tooling.
-
-Experienced building production mobile and web applications using React Native, TypeScript, and Rust, with growing focus on backend systems, telemetry ingestion pipelines, and Postgres-backed platforms.
-
-Background includes leadership roles in mobile engineering teams, modernization of legacy mobile architectures, and development of open-source telemetry tooling for motorsports data analysis.
+- Website: https://justinmakaila.com
+- Email: justin@treehousetechnology.io
+- GitHub: https://github.com/justinmakaila
+- LinkedIn: https://www.linkedin.com/in/justinmakaila
 
 ---
 
-# Core Competencies
+## Engineering Profile
 
-## Cross-Platform Application Engineering
-- React Native architecture for iOS, Android, and Web
-- Expo-based mobile platforms
-- Shared codebase strategies for multi-platform applications
-- Mobile performance optimization and native integrations
-
-## Backend and Systems Development
-- Service architecture using Node.js and Rust
-- REST APIs and gRPC services
-- WebSocket real-time data systems
-- API and data pipeline design
-
-## Data Platforms
-- PostgreSQL schema design
-- Row Level Security (RLS) architectures
-- Supabase-based backend platforms
-- Telemetry ingestion pipelines
-
-## Developer Tooling and Automation
-- CLI tooling development
-- CI/CD pipeline implementation
-- developer workflow automation
-- test automation infrastructure
+Product-minded lead software engineer with experience modernizing legacy application stacks, leading React Native teams, and building telemetry-driven platforms. Work spans product delivery, platform architecture, backend services, and developer tooling, with a technical focus on TypeScript, Rust, React Native, and PostgreSQL-backed systems, plus delivery acceleration through CI/CD, testing, and shared component systems.
 
 ---
 
-# Technical Stack
+## Professional Experience
 
-## Languages
-- TypeScript / JavaScript
-- Rust
-- Python
-- Swift
-- Java
-
-## Frontend
-- React
-- React Native
-- Expo
-- Vite
-
-## Backend
-- Node.js
-- Rust services
-- gRPC
-- REST APIs
-- WebSockets
-
-## Infrastructure
-- PostgreSQL
-- Supabase
-- AWS
-- Docker
-- CI/CD pipelines
-
----
-
-# Professional Experience
-
-## Treehouse Technology  
+### Treehouse Technology
 Owner / Software Consultant  
-June 2024 – Present
+June 2024-Present
 
-Independent consultancy providing cross-platform application engineering and full-stack development services.
+Independent consultancy delivering cross-platform application engineering and full-stack product development.
 
-Responsibilities and contributions include:
+- Design and implement React Native architectures for mobile products spanning iOS, Android, and shared codebases.
+- Modernize legacy mobile applications, including migrations from wrapped web experiences and aging native stacks.
+- Developed a production React Native and Expo platform for Vast Technologies, delivering customer communications, contact and conversation management, notifications, tasks, template-driven email and SMS workflows, Twilio voice features, knowledge modules, and an embedded AI assistant from one TypeScript codebase across mobile and web.
+- Build backend services and application platforms using Node.js, Rust, PostgreSQL, and Supabase.
+- Develop telemetry ingestion and analysis systems for client engagements, including current consulting work with XRaceAI.
+- Implement CI/CD workflows, automated UI testing, Storybook-driven component systems, release automation, and developer tooling to improve engineering delivery.
 
-- Designing and implementing React Native cross-platform mobile architectures.
-- Modernizing legacy mobile applications into native cross-platform solutions supporting iOS, Android, and Web.
-- Building backend integrations and services using Node.js and Rust.
-- Developing telemetry ingestion and analysis systems for motorsports data.
-- Designing scalable backend systems using PostgreSQL and Supabase.
-- Implementing CI/CD pipelines and automated deployment workflows.
-
-Internal platform development includes Trackmind, a telemetry-driven racing analysis platform.
-
----
-
-## Nowsta  
+### Nowsta
 Lead Mobile Engineer  
-July 2023 – March 2024
+July 2023-March 2024
 
-Led development of multiple production mobile applications for workforce management and scheduling.
-
-Key responsibilities:
+Led mobile engineering for workforce management and scheduling applications.
 
 - Managed a team of three engineers responsible for four production React Native applications.
 - Delivered a new time-clock mobile application in three weeks.
-- Integrated modern API services into a legacy mobile architecture.
-- Established development standards and release processes across mobile teams.
+- Integrated modern API services into a legacy mobile architecture while preserving functionality for existing users and avoiding a full platform rewrite.
+- Established development standards and release processes across the mobile team.
+- Supported delivery across scheduling, workforce, and time-tracking product surfaces.
 
----
-
-## Wellth  
+### Wellth
 Senior Software Engineer  
-January 2016 – August 2022
+January 2016-August 2022
 
-Core engineer responsible for mobile and web platform architecture.
-
-Major initiatives:
+Core engineer across mobile and web platform initiatives.
 
 - Led migration from native iOS and Android applications to React Native.
-- Architected and implemented internal React web applications.
-- Designed and implemented CI/CD pipelines enabling automated deployment by branch environment.
-- Established engineering development standards and platform architecture guidelines.
+- Architected and implemented internal React web applications for operational teams.
+- Designed CircleCI-based CI/CD pipelines that enabled automated deployments by branch environment.
+- Helped define platform architecture guidelines, engineering standards, and team development processes.
+- Contributed across product engineering, platform modernization, and developer workflow improvements.
 
----
-
-## Present, Inc.  
+### Present, Inc.
 Co-Founder / CTO  
-June 2013 – December 2015
+June 2013-December 2015
 
 Early-stage startup building a live video streaming platform.
 
-Responsibilities:
-
-- Designed backend infrastructure supporting live video streaming over HTTP.
+- Designed backend infrastructure supporting live video streaming over HTTP with an emphasis on low latency and high-quality replay.
 - Built early mobile clients and streaming pipelines.
 - Raised $145,000 in seed funding.
-- Scaled engineering team from two to five developers.
+- Scaled the engineering team from two to five developers.
+- Led technical direction during the company's early product development phase.
 
 ---
 
-# Major Engineering Projects
+## Selected Projects
 
-## Trackmind
+### Trackmind
 
-Telemetry analysis platform designed for motorsports and sim racing data.
+Telemetry analysis platform for motorsports and sim racing under XRaceAI, developed through an active consulting engagement.
 
-Capabilities include:
+- Circuit map visualization and lap analysis workflows
+- Telemetry overlays and session review tooling
+- Driver and engineer collaboration notes
+- Rust services, TypeScript application layer, React Native UI, and PostgreSQL / Supabase backend
 
-- Circuit map visualization
-- Lap and telemetry overlays
-- collaborative driver and engineer notes
-- telemetry ingestion pipelines
-- session data analysis
+### Vast Technologies Customer Engagement Platform
 
-Technology stack:
+Cross-platform customer communications and operations platform built through a consulting engagement.
 
-- Rust telemetry services
-- TypeScript application layer
-- React Native UI
-- PostgreSQL / Supabase backend
+- Shared React Native and Expo application for web, iOS, and Android
+- CRM contacts, inbox messaging, notifications, and task workflows
+- Template-driven email and SMS campaigns with Twilio voice features
+- AWS Amplify authentication, React Query orchestration, Storybook, Jest, automated UI testing, and deep linking support
 
----
+### Motorsports Telemetry Tooling
 
-## Motorsports Telemetry Tooling
-
-Development of open-source libraries and tooling for motorsport telemetry analysis.
-
-Includes:
+Open-source libraries and services for telemetry ingestion and real-time data workflows.
 
 - Rust telemetry parsing libraries
 - gRPC telemetry services
-- CLI developer tools
-- telemetry ingestion pipelines
-
-Focus areas:
-
-- real-time telemetry streaming
-- simulation telemetry processing
-- developer tooling for motorsport data analysis
+- WebSocket and HTTP streaming infrastructure
+- CLI tooling for telemetry processing and analysis
 
 ---
 
-# Open Source Contributions
+## Core Competencies
 
-Active contributor to open-source projects across mobile development and telemetry tooling ecosystems.
+### Cross-Platform Application Engineering
 
-Work includes:
+- React Native architecture for iOS and Android
+- Shared codebase strategies across mobile and web surfaces
+- Mobile performance optimization and native integrations
+- Platform modernization and migration planning
 
-- telemetry libraries and developer tooling
-- platform utilities for simulation data processing
-- contributions to existing mobile development libraries
+### Backend and Systems Development
+
+- Service architecture with Node.js and Rust
+- REST APIs, gRPC services, and WebSocket systems
+- Real-time data processing and telemetry ingestion pipelines
+- Application and platform integration design
+
+### Data Platforms
+
+- PostgreSQL schema design
+- Supabase application backends
+- Row Level Security architecture
+- Session and telemetry data modeling
+
+### Developer Tooling and Delivery
+
+- CLI tooling development
+- CI/CD pipeline implementation
+- Release automation
+- Engineering workflow standardization
 
 ---
 
-# Additional Experience
+## Technical Stack
+
+### Languages
+
+TypeScript / JavaScript, Rust, Python, Swift, Java
+
+### Frontend
+
+React, React Native, Expo, Vite
+
+### Backend
+
+Node.js, Rust services, REST APIs, gRPC, WebSockets
+
+### Infrastructure
+
+PostgreSQL, Supabase, AWS, Docker, CI/CD pipelines
+
+---
+
+## Open Source and Community
+
+Active contributor to open-source work related to telemetry tooling, simulation data workflows, and mobile engineering utilities.
+
+- Telemetry libraries and developer tooling
+- Simulation data processing utilities
+- Supporting tools for real-time telemetry analysis
+
+---
+
+## Additional Experience
 
 Assistant Coach  
 Penn State Abington Golf Team
 
-Responsibilities include coaching competitive collegiate golf athletes and supporting team training and performance development.
-
----
+Support competitive collegiate golfers through coaching, training, and performance development.
