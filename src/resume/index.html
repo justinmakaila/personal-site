@@ -25,6 +25,23 @@
         margin-bottom: 1.5rem;
       }
 
+      .export-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .export-toolbar select {
+        padding: 0.4rem 0.5rem;
+      }
+
+      .export-status {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
       pre {
         overflow-x: auto;
         padding: 0.75rem;
@@ -50,31 +67,33 @@
         <a href="/">← home</a>
       </nav>
 
+      <section class="export-toolbar" aria-label="Export actions">
+        <label for="resume-export-action">Export:</label>
+        <select id="resume-export-action">
+          <option value="">Select action…</option>
+          <option value="copy-markdown">Copy as markdown</option>
+          <option value="export-pdf">Export PDF</option>
+        </select>
+        <p id="resume-export-status" class="export-status" aria-live="polite"></p>
+      </section>
+
       <article id="resume-content" aria-live="polite">Loading resume…</article>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="/public/exportable-page.js"></script>
     <script>
-      const contentEl = document.getElementById('resume-content');
-
-      fetch('/public/resume.md')
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Resume markdown was not found.');
-          }
-
-          return response.text();
-        })
-        .then((markdown) => {
-          contentEl.innerHTML = marked.parse(markdown);
-        })
-        .catch(() => {
-          contentEl.innerHTML = [
-            '<h1>Resume</h1>',
-            '<p>Resume content is not available yet.</p>',
-            '<p>Please check back later.</p>',
-          ].join('');
-        });
+      window.initExportablePage({
+        contentId: 'resume-content',
+        exportActionId: 'resume-export-action',
+        exportStatusId: 'resume-export-status',
+        markdownPath: '/public/resume.md',
+        missingMarkdownError: 'Resume markdown was not found.',
+        fallbackHeading: '<h1>Resume</h1>',
+        fallbackBody: '<p>Resume content is not available yet.</p>',
+        pdfFilename: 'resume.pdf',
+      });
     </script>
   </body>
 </html>
