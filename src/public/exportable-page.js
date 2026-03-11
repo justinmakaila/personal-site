@@ -2,13 +2,41 @@
   const fallbackCopy = (text) => {
     const textarea = document.createElement('textarea');
     textarea.value = text;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'absolute';
+    textarea.style.position = 'fixed';
+    textarea.style.top = '0';
     textarea.style.left = '-9999px';
+    textarea.style.opacity = '0';
     document.body.appendChild(textarea);
+
+    textarea.focus();
     textarea.select();
-    document.execCommand('copy');
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    const wasCopied = document.execCommand('copy');
     document.body.removeChild(textarea);
+
+    if (!wasCopied) {
+      throw new Error('Fallback copy failed.');
+    }
+  };
+
+  const exportSelectablePdf = async ({ contentEl, pdfFilename }) => {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      throw new Error('jsPDF is unavailable.');
+    }
+
+    const { jsPDF } = window.jspdf;
+    const documentPdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+
+    await documentPdf.html(contentEl, {
+      margin: [10, 10, 10, 10],
+      autoPaging: 'text',
+      html2canvas: {
+        scale: 1,
+      },
+    });
+
+    documentPdf.save(pdfFilename);
   };
 
   window.initExportablePage = ({
@@ -44,35 +72,31 @@
         }
 
         setExportStatus('Markdown copied to clipboard.');
-      } catch (error) {
-        setExportStatus('Unable to copy markdown right now.');
+      } catch (clipboardError) {
+        try {
+          fallbackCopy(markdownSource);
+          setExportStatus('Markdown copied to clipboard.');
+        } catch (fallbackError) {
+          setExportStatus('Unable to copy markdown right now.');
+        }
       }
     };
 
     const exportPdf = async () => {
-      if (!markdownSource) {
+      if (!contentEl || !contentEl.textContent.trim()) {
         setExportStatus('No content is available to export yet.');
         return;
       }
 
-      if (!window.html2pdf) {
-        setExportStatus('PDF export is unavailable because the library did not load.');
+      if (!window.jspdf || !window.jspdf.jsPDF) {
+        setExportStatus('PDF export is unavailable because the PDF library did not load.');
         return;
       }
 
       setExportStatus('Preparing PDF export…');
 
       try {
-        await window.html2pdf()
-          .set({
-            filename: pdfFilename,
-            margin: [10, 10, 10, 10],
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-          })
-          .from(contentEl)
-          .save();
-
+        await exportSelectablePdf({ contentEl, pdfFilename });
         setExportStatus('PDF download started.');
       } catch (error) {
         setExportStatus('Unable to export PDF right now.');
