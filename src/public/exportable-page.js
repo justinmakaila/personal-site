@@ -1,4 +1,15 @@
 (function () {
+  const EXPORT_STATUS = {
+    noMarkdown: 'No markdown is available to copy yet.',
+    noContent: 'No content is available to export yet.',
+    preparingPdf: 'Preparing PDF export...',
+    pdfStarted: 'PDF download started.',
+    pdfUnavailable: 'PDF export is unavailable because the PDF library did not load.',
+    pdfFailed: 'Unable to export PDF right now.',
+    copySuccess: 'Markdown copied to clipboard.',
+    copyFailed: 'Unable to copy markdown right now.',
+  };
+
   const fallbackCopy = (text) => {
     const textarea = document.createElement('textarea');
     textarea.value = text;
@@ -20,7 +31,7 @@
     }
   };
 
-  const exportSelectablePdf = async ({ contentEl, pdfFilename }) => {
+  const exportPdfWithJsPdf = async ({ contentEl, pdfFilename }) => {
     if (!window.jspdf || !window.jspdf.jsPDF) {
       throw new Error('jsPDF is unavailable.');
     }
@@ -37,6 +48,36 @@
     });
 
     documentPdf.save(pdfFilename);
+  };
+
+  const exportPdfWithHtml2Pdf = ({ contentEl, pdfFilename }) => {
+    if (typeof window.html2pdf !== 'function') {
+      throw new Error('html2pdf is unavailable.');
+    }
+
+    return window
+      .html2pdf()
+      .set({
+        margin: 10,
+        filename: pdfFilename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      })
+      .from(contentEl)
+      .save();
+  };
+
+  const resolvePdfExporter = () => {
+    if (typeof window.html2pdf === 'function') {
+      return exportPdfWithHtml2Pdf;
+    }
+
+    if (window.jspdf && window.jspdf.jsPDF) {
+      return exportPdfWithJsPdf;
+    }
+
+    return null;
   };
 
   window.initExportablePage = ({
@@ -63,7 +104,7 @@
 
     const copyAsMarkdown = async () => {
       if (!markdownSource) {
-        setExportStatus('No markdown is available to copy yet.');
+        setExportStatus(EXPORT_STATUS.noMarkdown);
         return;
       }
 
@@ -74,47 +115,50 @@
           fallbackCopy(markdownSource);
         }
 
-        setExportStatus('Markdown copied to clipboard.');
+        setExportStatus(EXPORT_STATUS.copySuccess);
       } catch (clipboardError) {
         try {
           fallbackCopy(markdownSource);
-          setExportStatus('Markdown copied to clipboard.');
+          setExportStatus(EXPORT_STATUS.copySuccess);
         } catch (fallbackError) {
-          setExportStatus('Unable to copy markdown right now.');
+          setExportStatus(EXPORT_STATUS.copyFailed);
         }
       }
     };
 
     const exportPdf = async () => {
       if (!contentEl || !isContentLoaded) {
-        setExportStatus('No content is available to export yet.');
+        setExportStatus(EXPORT_STATUS.noContent);
         return;
       }
 
-      if (!window.jspdf || !window.jspdf.jsPDF) {
-        setExportStatus('PDF export is unavailable because the PDF library did not load.');
+      const exportPdfDocument = resolvePdfExporter();
+      if (!exportPdfDocument) {
+        setExportStatus(EXPORT_STATUS.pdfUnavailable);
         return;
       }
 
-      setExportStatus('Preparing PDF export…');
+      setExportStatus(EXPORT_STATUS.preparingPdf);
 
       try {
-        await exportSelectablePdf({ contentEl, pdfFilename });
-        setExportStatus('PDF download started.');
+        await exportPdfDocument({ contentEl, pdfFilename });
+        setExportStatus(EXPORT_STATUS.pdfStarted);
       } catch (error) {
-        setExportStatus('Unable to export PDF right now.');
+        setExportStatus(EXPORT_STATUS.pdfFailed);
       }
+    };
+
+    const exportActions = {
+      'copy-markdown': copyAsMarkdown,
+      'export-pdf': exportPdf,
     };
 
     exportActionEl.addEventListener('change', async (event) => {
       const action = event.target.value;
+      const runAction = exportActions[action];
 
-      if (action === 'copy-markdown') {
-        await copyAsMarkdown();
-      }
-
-      if (action === 'export-pdf') {
-        await exportPdf();
+      if (runAction) {
+        await runAction();
       }
 
       event.target.value = '';
