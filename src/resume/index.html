@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>resume | justin makaila</title>
+    <title>Justin Makaila | Resume</title>
+    <meta name="description" content="Resume for Justin Makaila: cross-platform engineering, systems delivery, and consulting experience.">
+    <link rel="canonical" href="https://justinmakaila.com/resume/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Justin Makaila | Resume">
+    <meta property="og:description" content="Resume for Justin Makaila: roles, projects, and core technical skills.">
+    <meta property="og:url" content="https://justinmakaila.com/resume/">
     <style>
-      :root {
-        color-scheme: light dark;
-      }
-
       body {
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
@@ -17,12 +19,27 @@
 
       main {
         margin: 0 auto;
-        max-width: 800px;
+        max-width: 900px;
         padding: 2rem 1rem;
       }
 
       nav {
+        border-bottom: 1px solid #ccc;
         margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+      }
+
+      nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        color: inherit;
       }
 
       .export-toolbar {
@@ -63,24 +80,31 @@
   </head>
   <body>
     <main>
-      <nav>
-        <a href="/">← home</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resume/">Resume</a></li>
+          <li><a href="/cv/">CV</a></li>
+          <li><a href="/consulting/">Consulting</a></li>
+        </ul>
       </nav>
+
+      <h1>Resume</h1>
 
       <section class="export-toolbar" aria-label="Export actions">
         <label for="resume-export-action">Export:</label>
         <select id="resume-export-action">
-          <option value="">Select action…</option>
+          <option value="">Select action...</option>
           <option value="copy-markdown">Copy as markdown</option>
           <option value="export-pdf">Export PDF</option>
         </select>
-        <p id="resume-export-status" class="export-status" aria-live="polite"></p>
+        <p id="resume-export-status" class="export-status" aria-live="polite">Preparing resume content...</p>
       </section>
 
-      <article id="resume-content" aria-live="polite">Loading resume…</article>
+      <article id="resume-content" aria-live="polite"></article>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/public/mini-markdown.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="/public/exportable-page.js"></script>
     <script>
@@ -89,9 +113,11 @@
         exportActionId: 'resume-export-action',
         exportStatusId: 'resume-export-status',
         markdownPath: '/public/resume.md',
+        contentLabel: 'Resume',
+        supportEmail: 'justin@treehousetechnology.io',
         missingMarkdownError: 'Resume markdown was not found.',
-        fallbackHeading: '<h1>Resume</h1>',
-        fallbackBody: '<p>Resume content is not available yet.</p>',
+        fallbackHeading: '<h2>Resume temporarily unavailable</h2>',
+        fallbackBody: '<p>We could not load the resume content right now.</p>',
         pdfFilename: 'resume.pdf',
       });
     </script>

@@ -44,6 +44,8 @@
     exportActionId,
     exportStatusId,
     markdownPath,
+    contentLabel,
+    supportEmail,
     missingMarkdownError,
     fallbackHeading,
     fallbackBody,
@@ -53,6 +55,7 @@
     const exportActionEl = document.getElementById(exportActionId);
     const exportStatusEl = document.getElementById(exportStatusId);
     let markdownSource = '';
+    let isContentLoaded = false;
 
     const setExportStatus = (message) => {
       exportStatusEl.textContent = message;
@@ -83,7 +86,7 @@
     };
 
     const exportPdf = async () => {
-      if (!contentEl || !contentEl.textContent.trim()) {
+      if (!contentEl || !isContentLoaded) {
         setExportStatus('No content is available to export yet.');
         return;
       }
@@ -117,24 +120,51 @@
       event.target.value = '';
     });
 
-    fetch(markdownPath)
-      .then((response) => {
+    const renderFallback = () => {
+      const mailTo = `mailto:${supportEmail}`;
+      contentEl.innerHTML = [
+        fallbackHeading,
+        fallbackBody,
+        '<p>Unable to load the latest content. You can retry now or contact support.</p>',
+        `<p><button type="button" id="${contentId}-retry">Retry now</button></p>`,
+        `<p><a href="/">Return home</a> · <a href="${mailTo}">${supportEmail}</a></p>`,
+      ].join('');
+
+      const retryButton = document.getElementById(`${contentId}-retry`);
+      if (retryButton) {
+        retryButton.addEventListener('click', () => {
+          void loadMarkdown();
+        });
+      }
+    };
+
+    const loadMarkdown = async () => {
+      setExportStatus(`Fetching ${contentLabel} content...`);
+
+      try {
+        const response = await fetch(markdownPath, { cache: 'no-cache' });
         if (!response.ok) {
           throw new Error(missingMarkdownError);
         }
 
-        return response.text();
-      })
-      .then((markdown) => {
+        const markdown = await response.text();
         markdownSource = markdown;
-        contentEl.innerHTML = marked.parse(markdown);
-      })
-      .catch(() => {
-        contentEl.innerHTML = [
-          fallbackHeading,
-          fallbackBody,
-          '<p>Please check back later.</p>',
-        ].join('');
-      });
+
+        if (window.parseMiniMarkdown) {
+          contentEl.innerHTML = window.parseMiniMarkdown(markdown);
+        } else {
+          contentEl.innerHTML = `<pre>${markdown.replace(/</g, '&lt;')}</pre>`;
+        }
+
+        isContentLoaded = true;
+        setExportStatus(`${contentLabel} loaded.`);
+      } catch (error) {
+        isContentLoaded = false;
+        setExportStatus(`Unable to load ${contentLabel.toLowerCase()} content right now.`);
+        renderFallback();
+      }
+    };
+
+    void loadMarkdown();
   };
 })();
