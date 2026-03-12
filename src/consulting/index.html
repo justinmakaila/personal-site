@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>consulting | justin makaila</title>
+    <title>Justin Makaila | Consulting</title>
+    <meta name="description" content="Consulting profile for Justin Makaila: cross-platform architecture, full-stack delivery, and real-time systems.">
+    <link rel="canonical" href="https://justinmakaila.com/consulting/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Justin Makaila | Consulting">
+    <meta property="og:description" content="Consulting services in React Native, TypeScript, Rust, and PostgreSQL-backed systems.">
+    <meta property="og:url" content="https://justinmakaila.com/consulting/">
     <style>
-      :root {
-        color-scheme: light dark;
-      }
-
       body {
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
@@ -17,12 +19,27 @@
 
       main {
         margin: 0 auto;
-        max-width: 800px;
+        max-width: 900px;
         padding: 2rem 1rem;
       }
 
       nav {
+        border-bottom: 1px solid #ccc;
         margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+      }
+
+      nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        color: inherit;
       }
 
       .export-toolbar {
@@ -63,24 +80,31 @@
   </head>
   <body>
     <main>
-      <nav>
-        <a href="/">← home</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resume/">Resume</a></li>
+          <li><a href="/cv/">CV</a></li>
+          <li><a href="/consulting/">Consulting</a></li>
+        </ul>
       </nav>
+
+      <h1>Consulting</h1>
 
       <section class="export-toolbar" aria-label="Export actions">
         <label for="consulting-export-action">Export:</label>
         <select id="consulting-export-action">
-          <option value="">Select action…</option>
+          <option value="">Select action...</option>
           <option value="copy-markdown">Copy as markdown</option>
           <option value="export-pdf">Export PDF</option>
         </select>
-        <p id="consulting-export-status" class="export-status" aria-live="polite"></p>
+        <p id="consulting-export-status" class="export-status" aria-live="polite">Preparing consulting content...</p>
       </section>
 
-      <article id="consulting-content" aria-live="polite">Loading consulting profile…</article>
+      <article id="consulting-content" aria-live="polite"></article>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/public/mini-markdown.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="/public/exportable-page.js"></script>
     <script>
@@ -89,9 +113,11 @@
         exportActionId: 'consulting-export-action',
         exportStatusId: 'consulting-export-status',
         markdownPath: '/public/consulting.md',
+        contentLabel: 'Consulting',
+        supportEmail: 'justin@treehousetechnology.io',
         missingMarkdownError: 'Consulting markdown was not found.',
-        fallbackHeading: '<h1>Consulting</h1>',
-        fallbackBody: '<p>Consulting content is not available yet.</p>',
+        fallbackHeading: '<h2>Consulting profile temporarily unavailable</h2>',
+        fallbackBody: '<p>We could not load the consulting profile right now.</p>',
         pdfFilename: 'consulting.pdf',
       });
     </script>
