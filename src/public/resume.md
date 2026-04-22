@@ -64,13 +64,23 @@ Telemetry analysis platform for motorsports and sim racing under XRaceAI, develo
 - Driver and engineer note-taking
 - Rust, TypeScript, React Native, PostgreSQL, and Supabase
 
-### Motorsports Telemetry Tooling
+### Vast Technologies
 
-Open-source tooling for motorsport telemetry ingestion and analysis.
+Customer-engagement focused CRM called Vast Reach, developed through a consulting agreement.
+
+- Modernization of legacy web-wrapper app to React Native
+- Development of v2 cross-platform web-app built with react-native and react-native-web
+- CI/D pipelines for all client-facing applications for rapid iteration on a small team
+
+### Racedirector Github Organization
+
+Open-source tooling for simracing telemetry ingestion and analysis.
 
 - Rust telemetry parsers
-- gRPC and WebSocket services
-- CLI tooling for telemetry workflows
+- gRPC and WebSocket services for remote, live telemetry access
+- CLI tooling and plugins for telemetry workflows
+- OpenAPI client generation
+- OAuth client implementation for node.js and TypeScript
 
 ---
 
